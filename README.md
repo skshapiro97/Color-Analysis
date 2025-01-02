@@ -19,3 +19,5 @@ Note: The project this code was created for and is being used for is analyzing c
  	- The best way I found to do this is to create a new spreadsheet tab, copy one set of ImageJ result table data (aka only one set of Red average, Green average, and Blue average rows), go into the new spreadsheet tab, right-click, go to Paste Special -> Transposed (this will paste the data in the correct orientation). Repeat for all data.
   - Once the data is in the correct orientation and has the appropriate columns for your data (in this case it's: Date, Lobster, Temp, UV_Treatment, Region, Red, Green, Blue), save it as a .csv file
 - Step 3: Follow the R code (developed by Arianna Krinos, 31 July 2024) for formatting the ImageJ data
+	- This code will help to pivot and reformat the raw ImageJ data to make new columns for each ROI avg. Red, Green, and Blue values respectively and also make a column with the RGB value for each ROI. If the RGB value for each ROI is not needed, that line of code can be removed
+ 	- An example raw ImageJ data .csv file and an example pivoted/reformatted .csv have been added to the repository for reference
