@@ -14,11 +14,16 @@ Note: The project this code was created for and is being used for is analyzing c
 
 **PROTOCOL:**
 - Step 1: Follow the Lobster Photo ImageJ Protocol for all images to collect color data; when pasting the color data into a spreadsheet, I like to pre-label my columns and rows and separate each ImageJ table by a blank spreadsheet row to keep my data separated and properly labeled, as it can get confusing when collecting data for multiple ROIs on multiple subjects.
+
 - Step 2: Format ImageJ results table data into the correct format
 	- When the data is collected for each ROI, it is formatted with the columns being each ROI and rows being the Red average, Green average, and Blue average. In order to make the data more user-friendly for R, it needs to be flipped.
  	- The best way I found to do this is to create a new spreadsheet tab, copy one set of ImageJ result table data (aka only one set of Red average, Green average, and Blue average rows), go into the new spreadsheet tab, right-click, go to Paste Special -> Transposed (this will paste the data in the correct orientation). Repeat for all data.
   - Once the data is in the correct orientation and has the appropriate columns for your data (in this case it's: Date, Lobster, Region, Red, Green, Blue), save it as a .csv file
-- Step 3: Follow the R code (developed by Arianna Krinos, 31 July 2024) for formatting the ImageJ data
+
+- Step 3: Follow format_imagej_data_code R code (developed by Arianna Krinos, 31 July 2024) for formatting the ImageJ data
 	- This code will help to pivot and reformat the raw ImageJ data to make new columns for each ROI avg. Red, Green, and Blue values respectively and also make a column with the RGB value for each ROI. If the RGB value for each ROI is not needed, that line of code can be removed
  	- An example raw ImageJ data .csv file and an example pivoted/reformatted .csv have been added to the repository for reference
   	- After the pivoted/reformatted .csv file has been created, I delete column A (row numbers) and add in any other columns of relevant data (in my case, I added data columns for Temperature and UV Treatment)
+  
+- Step 4: Visualizing color data in R
+	-  The code included in this R script graphs color across time in the form of color grids, ternary plots (using both ggtern and ternary package), boxplots, and line plots. I have included a dummy data subset .csv that can be used with the color visualizing code as reference.
