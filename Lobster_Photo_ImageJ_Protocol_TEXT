@@ -1,0 +1,97 @@
+Lobster Photo Editing Protocol
+By: Sara Shapiro, Aug 2024, Woods Hole Oceanographic Institution
+
+  1.	Find an image that has the correct orientation of the lobster(s) so that all the regions can be seen.
+  2.	Open the image in ImageJ (Fiji)
+  3.	Crop image(s) so the well plate, labels, and size/color scale are in the photo(s).
+  4.	White balance image(s) (1st time, skip step if already completed and move onto step 5):
+      a.	Open Macros terminal: Plugins -> New -> Macro
+      b.	Copy, Paste, and Run the following code in the macro window:
+// Original code by Vytas Bindokas; Oct 2006, Univ. of Chicago
+// https://digital.bsd.uchicago.edu/docs/imagej_macros/_graybalancetoROI.txt
+// This macro white balances RGB to a selected region (equal R,G,B =gray)
+//    draw a region prior to running the macro
+
+// Code modified by Patrice Mascalchi, 2014, Univ. of Cambridge UK
+// Ask for region to be drawn / Check region existence / check RGB at start / compaction of code (loop)
+
+setTool(0);
+waitForUser("Draw a region over background");
+run("Set Measurements...", "  mean redirect=None decimal=3");
+if (selectionType==-1) exit("you must draw a region first");
+
+ti = getTitle;
+run("Select None");
+//setBatchMode(true);
+
+run("Duplicate...", "title=rgbstk-temp");
+origBit = bitDepth;
+if (bitDepth() != 24) exit("Active image is not RGB");
+run("RGB Stack");
+run("Restore Selection");
+
+val = newArray(3);
+for (s=1;s<=3;s++) {
+	setSlice(s);
+	run("Measure");
+	val[s-1] = getResult("Mean");
+}
+
+run("Select None");
+
+run("16-bit");
+run("32-bit");
+Array.getStatistics(val, min, max, mean);
+
+for (s=1; s<=3; s++) {
+	setSlice(s);
+	dR = val[s-1] - mean;
+	if (dR < 0) {
+		run("Add...", "slice value="+ abs(dR));
+	} else if (dR > 0) {
+		run("Subtract...", "slice value="+ abs(dR));
+	}
+}
+
+run("16-bit");
+run("Convert Stack to RGB");
+
+rename(ti + "-corrected");
+//closeWin("Results");
+closeWin("rgbstk-temp");
+
+// ------------------------------------------------------------------------------------------
+// close any window without returning any error
+function closeWin(name) {
+	if (isOpen(name)) {
+	     selectWindow(name);
+	     run("Close");
+	}
+}
+
+      c.	Using the selection tool, select a portion of the white tape (or true white reference) on the the image, then click OK.
+      d.	Save the macro script as “white_balance_macro” in the Fiji/imageJ program folder in the following folder location within your computer program files:
+          fiji-win64 > Fiji.app > scripts > Process
+      e.	Restart imageJ (make sure to save cropped images)
+      f.	Go to Plugins -> Shortcuts -> Add Shortcut… -> assign the white_balance_macro file to a shortcut from the dropdown menu.
+      g.	Now when you want to adjust white balance, all you need to do is that keyboard shortcut.
+  5.	White Balance Images (once shortcut is saved)
+      a.	Select one of open images
+      b.	Perform keyboard shortcut
+      c.	Select a portion of the white tape (or true white reference) on the image using the selection tool then click OK
+  6.	Go to Image -> Color -> Make Composite.
+      a.	This will give you a merged image (aka composite image) with the 3 color layers (R, G, and B) as separate layers.
+  7.	Use the ellipse tool to one at a time draw an ROI then Ctrl + T to save the ROI in the ROI manager. Repeat for each of the 5 ROIs for each lobster
+      a.	VERY IMPORTANT - do the ROIs in order for each lobster and do the lobsters in the correct order (CH, CTM, CTE, AS2, then AS5). This way the data will be in order in the table imageJ will create with the RGB values.
+  8.	In the ROI manager tab, select all ROIs (Ctrl + A) -> go to More>> -> OR (Combine)
+  9.	Go to Plugins -> Accurate Gaussian Blur -> set to 3.5
+  10.	In ROI manager tab, select all ROIs -> go to More>> -> MultiMeasure
+      a.	This gives you a table with 3 rows (1 = R, 2 = G, 3 = B) and each column is an ROI (in the order you created the ROIs). 
+      b.	Each value is a mean color value for the ROI.
+  11.	In ROI manager (w/ all ROIs selected) go to More>> -> Save… -> Save as ROIs for image (YYYYMMDD_’Temp’L##_ROIs)
+  12.	Save the composite image as YYYYMMDD_’Temp’L##_RGB
+      a.	YYYYMMDD refers to the date the image was taken
+  13.	Copy ROI RGB data from the ImageJ results table into a spreadsheet for further processing
+
+
+
