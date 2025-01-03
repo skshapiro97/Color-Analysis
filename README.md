@@ -13,7 +13,8 @@ Protocol for collecting average color (RGB) for a region of interest and R code 
 Note: The project this code was created for and is being used for is analyzing color change over time in post-larval lobsters when subjected to different temperatures and UV exposure. Because of this, there is reference to lobsters and lobster anatomy in the protocol.
 
 **PROTOCOL:**
-- Step 1: Follow the Lobster Photo ImageJ Protocol for all images to collect color data; when pasting the color data into a spreadsheet, I like to pre-label my columns and rows and separate each ImageJ table by a blank spreadsheet row to keep my data separated and properly labeled, as it can get confusing when collecting data for multiple ROIs on multiple subjects.
+- Step 1: Follow the Lobster Photo ImageJ Protocol for all images to collect color data
+	-  When pasting the color data into a spreadsheet, I like to pre-label my columns and rows and separate each ImageJ table by a blank spreadsheet row to keep my data separated and properly labeled, as it can get confusing when collecting data for multiple ROIs on multiple subjects.
 
 - Step 2: Format ImageJ results table data into the correct format
 	- When the data is collected for each ROI, it is formatted with the columns being each ROI and rows being the Red average, Green average, and Blue average. In order to make the data more user-friendly for R, it needs to be flipped.
