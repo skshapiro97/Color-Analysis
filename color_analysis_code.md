@@ -16,7 +16,7 @@ temperature.
 # Set the working directory and import the .csv file
 
 ``` r
-setwd("C:/Users/sks/Documents/Tepolt Lab/2024_PL_lab_images")
+setwd("C:/Users/sks/Documents/Tepolt Lab/2024_PL_lab_images/github")
 data <- read.csv("dummy_data.csv")
 ```
 
@@ -68,7 +68,7 @@ ch18_cg <- ggplot(df_CH, aes(x = date, y = lob)) +
 ch18_cg
 ```
 
-![](color_analysis_code_files/figure-gfm/Chelae%20(CH)%20Color%20Grid-1.png)<!-- -->
+![](color_analysis_code_files/figure-gfm/Chelae_(CH)_Color%20Grid-1.png)<!-- -->
 
 # Ternary Plot using ggtern Example
 
