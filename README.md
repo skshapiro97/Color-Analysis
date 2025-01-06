@@ -24,9 +24,9 @@ Note: The project this code was created for and is being used for is analyzing c
 
 - Step 3: Follow format_imagej_data_code R code (developed by Arianna Krinos, 31 July 2024) for formatting the ImageJ data
 	- This code will help to pivot and reformat the raw ImageJ data to make new columns for each ROI avg. Red, Green, and Blue values respectively and also make a column with the RGB value for each ROI. If the RGB value for each ROI is not needed, that line of code can be removed
- 	- Example pivoted/reformatted .csv have been added to .csv files folder (pivod_imagej_example.csv)
-  	- After the pivoted/reformatted .csv file has been created, I delete column A (row numbers) and add in any other columns of relevant data (in my case, I added data columns for Temperature and UV Treatment)
+ 	- Example pivoted/reformatted .csv has been added to .csv files folder (pivod_imagej_example.csv)
+  	- After the pivoted/reformatted .csv file has been created, I delete column A (row numbers) and add in any other columns of relevant data (in my case, I added data columns for Temperature and UV Treatment). I then save this edited file as a new .csv file to be subsequently used for the R analysis (file name dummy_data.csv in .csv files folder).
   
 - Step 4: Visualizing color data in R
-	-  The code included in this R script (color_analysis_code.md) graphs color across time in the form of color grids, ternary plots (using both ggtern and ternary package), boxplots, and line plots. I have included a dummy data subset .csv that can be used with the color visualizing code as reference.
+	-  The code included in this R script (color_analysis_code.md) graphs color across time in the form of color grids, ternary plots (using both ggtern and ternary package), boxplots, and line plots. I have included a dummy data subset .csv that can be used with the color visualizing code as reference (dummy_data.csv in .csv files folder).
  -  NOTE: The Ternary package ternary plot doesn't load in the .md file because the figure can't be "named" (or at least I haven't found a way to name it), but you can view it in the PDF version of the code file (Color Analysis Code.pdf).
