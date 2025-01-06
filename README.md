@@ -1,7 +1,6 @@
+<meta name="google-site-verification" content="rioRg8oozEsoPQNDojF6CZ1s40MX-JCnGPeeyCI35Js" />
 # Color-Analysis
 Protocol for collecting average color (RGB) for a region of interest and R code for how to analyze color data
-
-<meta name="google-site-verification" content="rioRg8oozEsoPQNDojF6CZ1s40MX-JCnGPeeyCI35Js" />
 
 **Uses:** ImageJ software and R programming language
 
